@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  webserver:
+    image: letgoteam/reporting-apache:https-php-7.1-dev
+    ports:
+      - 90000:80
+      - 900011:443
+    volumes:
+      - '.:/var/www/localhost/htdocs'
+    env_file:
+      - .env
+    networks:
+      default:
+        aliases:
+          - kata.dev.letgo.local
+      letgo:
+        aliases:
+          - kata.dev.letgo.local
+
+networks:
+  default: ~
+  letgo:
+    external: true
